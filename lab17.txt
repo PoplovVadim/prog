@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            Pen blackPen = new Pen(Color.Black, 4);
+            SolidBrush beige = new SolidBrush(Color.FromArgb(255, 249, 165, 101));
+            Rectangle house = new Rectangle(200, 150, 200, 200);
+            g.FillRectangle(beige, house);
+            g.DrawRectangle(blackPen, house);
+            Rectangle tube = new Rectangle(345, 50, 30, 50);
+            g.FillRectangle(beige, tube);
+            g.DrawRectangle(blackPen, tube);
+            Point[] triangle = new Point[3] {new Point(150, 150), new Point(450, 150), new Point(300, 25)};
+            g.FillPolygon(beige, triangle);
+            g.DrawPolygon(blackPen, triangle);
+            Rectangle firstep = new Rectangle(250, 340, 100, 10);
+            Rectangle secstep = new Rectangle(250, 330, 100, 10);
+            Rectangle door = new Rectangle(275, 200, 50, 130);
+            Rectangle firstwin = new Rectangle(210, 200, 50, 55);
+            Rectangle secwin = new Rectangle(340, 200, 50, 55);
+            Rectangle[] draw = new Rectangle[] { firstep, secstep, door, firstwin, secwin };
+            SolidBrush brown = new SolidBrush(Color.FromArgb(255, 168, 83, 63));
+            g.FillRectangle(brown, door);
+            g.FillRectangle(brown, firstep);
+            g.FillRectangle(brown, secstep);
+            SolidBrush blue = new SolidBrush(Color.FromArgb(255, 189, 201, 245));
+            g.FillRectangle(blue, firstwin);
+            g.FillRectangle(blue, secwin);
+            g.DrawRectangles(blackPen, draw);
+            Rectangle tu = new Rectangle(335, 30, 50, 20);
+            g.FillRectangle(brown, tu);
+            g.DrawRectangle(blackPen, tu);
+            g.DrawLine(blackPen, 210, 220, 260, 220);
+            g.DrawLine(blackPen, 340, 220, 390, 220);
+            g.DrawLine(blackPen, 235, 220, 235, 255);
+            g.DrawLine(blackPen, 365, 220, 365, 255);
+            g.DrawEllipse(blackPen, 285, 265, 1, 1);
+            SolidBrush black = new SolidBrush(Color.Black);
+            g.FillEllipse(black, 285, 265, 1, 1);
+        }
+    }
+}

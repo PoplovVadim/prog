@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = null;
+            int k = 0;
+            while (k != 4)
+            {
+                Console.Clear();
+                Console.WriteLine("Выберите пункт меню:");
+                Console.WriteLine("1 - Ввод данных");
+                Console.WriteLine("2 - Просмотр данных");
+                Console.WriteLine("3 - Обработка");
+                Console.WriteLine("4 - Выход");
+                k = Convert.ToInt32(Console.ReadLine());
+                switch (k)
+                {
+                    case 1:
+                        DataEntry(ref str);
+                        break;
+                    case 2:
+                        DataOutput(str);
+                        break;
+                    case 3:
+                        DataProcessing(str);
+                        break;
+                    default:
+                        if (k != 4)
+                        {
+                            Console.WriteLine("Введена неверная команда");
+                        }
+                        k = 4;
+                        break;
+                }
+            }
+        }
+
+        static string DataEntry(ref string str)
+        {
+            Console.Clear();
+            Console.Write("Введите строку: ");
+            str = Console.ReadLine();
+            Console.WriteLine("\nНажмите Enter, чтобы продолжить");
+            Console.ReadLine();
+            Console.Clear();
+            return str;
+        }
+        static void DataOutput(string str)
+        {
+            Console.Clear();
+            Console.WriteLine(str);
+            Console.WriteLine("\nНажмите Enter, чтобы продолжить");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        static void DataProcessing(string str)
+        {
+            Console.Clear();
+            str = str.Replace("on", "online");
+            Console.WriteLine($"Результат: {str}");
+            Console.WriteLine("\nНажмите Enter, чтобы продолжить");
+            Console.ReadLine();
+            Console.Clear();
+        }
+    }
+}

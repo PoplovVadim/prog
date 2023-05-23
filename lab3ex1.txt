@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int a, b, x;
+            Console.Write("Введите a: ");
+            a = Vvod();
+            Console.Write("Введите b: ");
+            b = Vvod();
+            if (a>b)
+            {
+                x = a / b + 31;
+                Console.WriteLine("Ответ: " + x);
+            }
+            else
+                if (a==b)
+            {
+                x = -25;
+                Console.WriteLine("Ответ: " + x);
+            }
+            else
+            {
+                x = (a * 5 - 1) / a;
+                Console.WriteLine("Ответ: " + x);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+        static int Vvod()
+        {
+            while (true)
+            {
+                int i;
+                if (int.TryParse(Console.ReadLine(), out i))
+                    return i;
+                else
+                    Console.Write("Ошибка ввода! Введите целочисленное значение: ");
+            }
+        }
+    }
+}

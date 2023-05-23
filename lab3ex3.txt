@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int k;
+            Console.Write("Оценка: ");
+            k = Vvod();
+            switch (k)
+            {
+                case 1:
+                    Console.WriteLine("плохо");
+                    break;
+                case 2:
+                    Console.WriteLine("неудовлетворительно");
+                    break;
+                case 3:
+                    Console.WriteLine("удовлетворительно");
+                    break;
+                case 4:
+                    Console.WriteLine("хорошо");
+                    break;
+                case 5:
+                    Console.WriteLine("отлично");
+                    break;
+                default:
+                    Console.WriteLine("ошибка");
+                    break;
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+        static int Vvod()
+        {
+            while (true)
+            {
+                int i;
+                if (int.TryParse(Console.ReadLine(), out i))
+                    return i;
+                else
+                    Console.Write("Ошибка ввода! Введите целочисленное значение: ");
+            }
+        }
+    }
+}

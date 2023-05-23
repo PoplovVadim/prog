@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int X;
+            Console.Write("Координата X = ");
+            X = Vvod();
+            int Y;
+            Console.Write("Координата Y = ");
+            Y = Vvod();
+            if ((Y >= 2) && (36 >= (Math.Pow(X, 2) + Math.Pow(Y, 2))) && (16 <= (Math.Pow(X, 2) + Math.Pow(Y, 2))))
+            {
+                Console.WriteLine($"Точка ({X}, {Y}) принадлежит заштрихованной области");
+            }
+            else
+            {
+                Console.WriteLine($"Точка ({X}, {Y}) не принадлежит заштрихованной области");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+        static int Vvod()
+        {
+            while (true)
+            {
+                int i;
+                if (int.TryParse(Console.ReadLine(), out i))
+                    return i;
+                else
+                    Console.Write("Ошибка ввода! Введите целочисленное значение: ");
+            }
+        }
+    }
+}

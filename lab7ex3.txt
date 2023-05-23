@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int p, t, m, n, i, j, b;
+            Console.Write("Введите размер двумерного массива через пробел: ");
+            string[] s = Console.ReadLine().Split();
+            p = Convert.ToInt32(s[0]);
+            t = Convert.ToInt32(s[1]);
+            int[,] a = new int[p, t];
+            Console.WriteLine();
+            Console.WriteLine("- Введите элементы массива через пробел построчно -");
+            int[,] f = new int[2, p + t];
+            int[,] v = new int[2, p + t];
+            for (i = 0; i < p; i++)
+            {
+                Console.Write($"{i} строка: ");
+                string[] h = Console.ReadLine().Split();
+                for (j = 0; j < t; j++)
+                {
+                    a[i, j] = Convert.ToInt32(h[j]);
+                }
+            }
+            for (i = 0; i < p; i++)
+            {
+                b = i;
+                m = a[b, 0];
+                n = a[b, 0];
+                for (j = 0; j < t; j++)
+                {
+                    if (a[i, j] >= m)
+                    {
+                        m = a[i, j];
+                        f[0, b] = j;
+                    }
+                    if (a[i, j] <= n)
+                    {
+                        n = a[i, j];
+                        f[1, b] = j;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            for (j = 0; j < t; j++)
+            {
+                b = j;
+                m = a[0, b];
+                n = a[0, b];
+                for (i = 0; i < p; i++)
+                {
+                    if (a[i, j] >= m)
+                    {
+                        m = a[i, j];
+                        v[0, b] = i;
+                    }
+                    if (a[i, j] <= n)
+                    {
+                        n = a[i, j];
+                        v[1, b] = i;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Индексы седловых точек: ");
+            for (i = 0; i < p; i++)
+            {
+                for (j = 0; j < t; j++)
+                {
+                    if (i == v[0, i] && f[1, i] == j)
+                    {
+                        Console.WriteLine($"[{i},{j}]");
+                    }
+                    if (i == v[1, i] && f[0, i] == j)
+                    {
+                        Console.WriteLine($"[{i},{j}]");
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

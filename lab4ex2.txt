@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i, m;
+            int b = 1;
+            for (i = 2; i < 31; i++)
+            {
+                Console.Write($"Количество осадков {i} мая: ");
+                m = Vvod();
+                if (m == 0)
+                {
+                    b++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            Console.WriteLine($"Количество суток, начиная с 1 мая, когда непрерывно не было осадков - {b}");
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+        static int Vvod()
+        {
+            while (true)
+            {
+                int i;
+                if (int.TryParse(Console.ReadLine(), out i))
+                    return i;
+                else
+                    Console.Write("Ошибка ввода! Введите целочисленное значение: ");
+            }
+        }
+    }
+}

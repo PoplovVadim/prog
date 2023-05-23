@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i; int k = 0;
+            string path = @"C:\App\ПР11.txt";
+            string txt = File.ReadAllText(path);
+            Console.WriteLine("Исходный текст: " + txt);
+            Console.WriteLine();
+            string[] text = File.ReadAllText(path).Split(',');
+            for (i = 0; i < text.Length; i++)
+            {
+                text[i] = text[i].Trim();
+                char[] a = text[i].ToCharArray();
+                if (a[0] == a[a.Length - 1])
+                {
+                    Console.WriteLine(text[i]);
+                    k++;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Количество слов - " + k);
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

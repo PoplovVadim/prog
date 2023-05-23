@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите строку: ");
+            string str = Console.ReadLine();
+            str = str.Replace("а", "1");
+            str = str.Replace("А", "2");
+            str = str.Replace("б", "3");
+            str = str.Replace("Б", "4");
+            str = str.Replace("1", "б");
+            str = str.Replace("2", "Б");
+            str = str.Replace("3", "а");
+            str = str.Replace("4", "А");
+            Console.WriteLine();
+            Console.WriteLine($"Результат: {str}");
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

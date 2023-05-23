@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите число n: ");
+            int i = 0;
+            int j = 0;
+            int b;
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("- Получившаяся матрица - ");
+            int[,] a = new int[n, n];
+            for (i = 0; i < n; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    b = i;
+                    a[i, j] = b + 1;
+                    b = j;
+                    if (i > 0 && n - i <= j)
+                    {
+
+                        a[i, j] = 0;
+
+                    }
+                    Console.Write(a[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

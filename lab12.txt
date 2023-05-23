@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Matrix a = new Matrix(5);
+            a.WriteMat();
+            a.MinSum();
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+class Matrix
+    {
+        public int n, i, j, x; public int[,] mass; public int[] b;
+        public Matrix() { }
+        public int N
+        {
+            get { return n; }
+            set { if (value > 0) n = value; }
+        }
+        public Matrix(int n)
+        {
+            this.n = n;
+            mass = new int[this.n, this.n];
+            b = new int[this.n];
+        }
+        public int this[int i, int j]
+        {
+            get
+            {
+                return mass[i, j];
+            }
+            set
+            {
+                mass[i, j] = value;
+            }
+        }
+        public int this[int n]
+        {
+            get
+            {
+                return b[i];
+            }
+            set
+            {
+                b[i] = value;
+            }
+        }
+        public void WriteMat()
+        {
+            Console.WriteLine("- Введите квадратную матрицу порядка 5 построчно -");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(i + " строка: ");
+                string[] str = new string[5];
+                str = Console.ReadLine().Split();
+                for (int j = 0; j < n; j++)
+                {
+                    mass[i, j] = Convert.ToInt32(str[j]);
+                }
+            }
+            Console.WriteLine();
+        }
+        public void MinSum()
+        {
+            for (i = 0; i < n; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    b[i] += mass[i, j];
+                }
+            }
+            j = b[0];
+            for (i = 1; i < b.Length; i++)
+            {
+                if (j > b[i])
+                {
+                    j = b[i];
+                    x = i;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            Console.WriteLine("Строка с минимальной суммой элементов - " + x);
+        }
+    }
+}

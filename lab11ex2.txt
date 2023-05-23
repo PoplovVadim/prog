@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace _2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i, j, u; int k = 0; int q = 0; int w = 0; int l = 0;
+            string path = @"C:\App\матрица.txt";
+            string[] lines = File.ReadAllLines(path);
+            Console.WriteLine("Исходная матрица:");
+            for (i = 0; i < lines.Length; i++)
+            {
+                Console.WriteLine(lines[i]);
+            }
+            Console.WriteLine();
+            string[] x = lines[0].Split();
+            int[,] a = new int[lines.Length, x.Length];
+            for (i = 0; i < lines.Length; i++)
+            {
+                string[] y = lines[i].Split();
+                for (j = 0; j < x.Length; j++)
+                {
+                    a[i, j] = Convert.ToInt32(y[j]);
+                }
+            }
+            k = Math.Abs(a[0, 0]);
+            for (i = 0; i < lines.Length; i++)
+            {
+                for (j = 0; j < x.Length; j++)
+                {
+                    if (k <= Math.Abs(a[i, j]))
+                    {
+                        k = Math.Abs(a[i, j]);
+                        l = a[i, j];
+                        q = i;
+                        w = j;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            u = a[0, 0];
+            a[q, w] = u;
+            a[0, 0] = l;
+            Console.WriteLine("Итог:");
+            for (i = 0; i < lines.Length; i++)
+            {
+                for (j = 0; j < x.Length; j++)
+                {
+                    Console.Write(a[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

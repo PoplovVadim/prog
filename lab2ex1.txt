@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double D; double C; double p; double S; double X;
+            Console.Write("Введите диаметр окружности: ");
+            D = Vvod();
+            Console.WriteLine();
+            p = Math.PI;
+            C = D * Math.PI;
+            X = Math.Sqrt(D);
+            S = (p * X) / 4;
+            Console.WriteLine("Длина окружности = " + C);
+            Console.WriteLine("Площадь круга = " + S);
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+        static double Vvod()
+        {
+            while (true)
+            {
+                double i;
+                if (double.TryParse(Console.ReadLine(), out i))
+                    return i;
+                else
+                    Console.Write("Ошибка ввода! Введите еще раз: ");
+            }
+        }
+    }
+}

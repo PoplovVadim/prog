@@ -1,0 +1,302 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SingleLinkedList Hotel = new SingleLinkedList();
+            int r;
+            int t;
+            int k=0;
+            while (k != 6)
+            {
+                Console.Clear();
+                Console.WriteLine("Выберите пункт меню:");
+                Console.WriteLine("1 - Создание новой записи");
+                Console.WriteLine("2 - Просмотр всех данных");
+                Console.WriteLine("3 - Просмотр данных о клиенте из определенной комнаты");
+                Console.WriteLine("4 - Вставка записи после другой записи");
+                Console.WriteLine("5 - Удаление первой записи");
+                Console.WriteLine("6 - Выход");
+                k = Convert.ToInt32(Console.ReadLine());
+                switch (k)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.Write("Введите данные о новом клиенте в данном порядке: ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Фамилия Имя Отчество ");
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write("Номер комнаты ");
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.Write("Дата въезда ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write("Количество дней ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Суточная стоимость ");
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        string info = Console.ReadLine();
+                        string[] inf = info.Split();
+                        Hotel.AddEl(inf[0], inf[1], inf[2], inf[3], inf[4], inf[5], inf[6]);
+                        Console.WriteLine("Нажмите Enter, чтобы продолжить");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Hotel.Print();
+                        Console.WriteLine("Нажмите Enter, чтобы продолжить");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Console.Write("Введите номер комнаты, информацию о клиенте которой вы хотите получить: ");
+                        r = Convert.ToInt32(Console.ReadLine());
+                        Hotel.RoomInfo(r);
+                        Console.WriteLine("Нажмите Enter, чтобы продолжить");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        Console.Write("Введите номер элемента, после которого вы хотите добавить новую запись: ");
+                        t = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Введите данные о новом клиенте в данном порядке: ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Фамилия Имя Отчество ");
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write("Номер комнаты ");
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.Write("Дата въезда ");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write("Количество дней ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Суточная стоимость ");
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        string inn = Console.ReadLine();
+                        string[] i = inn.Split();
+                        Hotel.AddAfter(i[0], i[1], i[2], i[3], i[4], i[5], i[6], t);
+                        Console.WriteLine("Нажмите Enter, чтобы продолжить");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Hotel.Delete();
+                        Console.WriteLine("Первый элемент удален");
+                        Console.WriteLine("Нажмите Enter, чтобы продолжить");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    default:
+                        if (k != 6)
+                        {
+                            Console.WriteLine("Введена неверная команда");
+                        }
+                        k = 6;
+                        break;
+                }
+            }
+        }
+    }
+    public class Node
+    {
+        public string lastname;
+        public string firstname;
+        public string middlename;
+        public int roomnum;
+        public string date;
+        public int daynum;
+        public int cost;
+        private Node link;
+        public string Lastname
+        {
+            get { return lastname; }
+            set { lastname = value; }
+        }
+        public string Firstname
+        {
+            get { return firstname; }
+            set { firstname = value; }
+        }
+        public string Middlename
+        {
+            get { return middlename; }
+            set { middlename = value; }
+        }
+        public int RoomNum
+        {
+            get { return roomnum; }
+            set { roomnum = value; }
+        }
+        public string Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
+        public int DayNum
+        {
+            get { return daynum; }
+            set { daynum = value; }
+        }
+        public int Cost
+        {
+            get { return cost; }
+            set { cost = value; }
+        }
+        public Node Link
+        {
+            get { return link; }
+            set { link = value; }
+        }
+        public Node() {}
+        public Node(string lastname, string firstname, string middlename, int roomnum, string date, int daynum, int cost)
+        {
+            lastname = Lastname;
+            firstname = Firstname;
+            middlename = Middlename;
+            roomnum = RoomNum;
+            date = Date;
+            daynum = DayNum;
+            cost = Cost;
+        }
+        public Node(string lastname, string firstname, string middlename, int roomnum, string date, int daynum, int cost, Node link)
+        {
+            Lastname = lastname;
+            Firstname = firstname;
+            Middlename = middlename;
+            RoomNum = roomnum;
+            Date = date;
+            DayNum = daynum;
+            Cost = cost;
+            Link = link;
+        }
+    }
+    public class SingleLinkedList
+    {
+        private Node FIRST;
+        private Node LAST;
+        public Node first
+        {
+            get { return FIRST; }
+            set { FIRST = value; }
+        }
+        public Node last
+        {
+            get { return LAST; }
+            set { LAST = value; }
+        }
+        public SingleLinkedList()
+        {
+            first = null;
+        }
+        public SingleLinkedList(string lastname, string firstname, string middlename, int roomnum, string date, int daynum, int cost)
+        {
+            Node p = new Node(lastname, firstname, middlename, roomnum, date, daynum, cost);
+            if (first == null)
+                first = p;
+            else
+            {
+                LAST.Link = p;
+                LAST = p;
+            }
+        }
+        public void AddEl(string lastname, string firstname, string middlename, string roomnum, string date, string daynum, string cost)
+        {
+            int rn = Convert.ToInt32(roomnum);
+            int dn = Convert.ToInt32(daynum);
+            int cst = Convert.ToInt32(cost);
+            Node p = new Node(lastname, firstname, middlename, rn, date, dn, cst);
+            p.lastname = lastname; p.firstname = firstname; p.middlename = middlename; p.roomnum = rn; p.date = date; p.daynum = dn; p.cost = cst;
+            if (first == null)
+            {
+                first = p;
+                first.Link = null;
+                last = first;
+            }
+            else
+            {
+                last.Link = p;
+                last = p;
+            }
+        }
+        public void AddAfter(string lastname, string firstname, string middlename, string roomnum, string date, string daynum, string cost, int node)
+        {
+            int rn = Convert.ToInt32(roomnum);
+            int dn = Convert.ToInt32(daynum);
+            int cst = Convert.ToInt32(cost);
+            Node p = new Node(lastname, firstname, middlename, rn, date, dn, cst);
+            int count = 0; 
+            p.lastname = lastname; p.firstname = firstname; p.middlename = middlename; p.roomnum = rn; p.date = date;p.daynum = dn; p.cost = cst;
+            Node temp; 
+            Node c = first;
+            while (c != null)
+            {
+                c = c.Link;
+                count++;
+            }
+            c = first;
+            if (first == null)
+            {
+                first = p;
+                first.Link = null;
+                last = first;
+            }
+            else
+            {
+                if (node < count)
+                {
+                    for (int i = 0; i < node - 1; i++)
+                        c = c.Link;
+                    temp = c.Link;
+                    c.Link = p;
+                    p.Link = temp;
+                }
+                else
+                {
+                    last.Link = p;
+                    last = p;
+                }
+            }
+        }
+        public void Print()
+        {
+            Node p = first; int count = 0;
+            while (p != null)
+            {
+                count++;
+                Console.WriteLine(count + ". " + p.lastname + " " + p.firstname + " " + p.middlename + " " + p.roomnum + " " + p.date + " " + p.daynum + " " + p.cost);
+                p = p.Link;
+            }
+        }
+        public void RoomInfo(int a)
+        {
+            Node p = first;
+            int count = 0;
+            while (p != null)
+            {
+                count++;
+                if (a == p.roomnum)
+                    Console.WriteLine(count + ". " + p.lastname + " " + p.firstname + " " + p.middlename + " " + p.roomnum + " " + p.date + " " + p.daynum + " " + p.cost);
+                p = p.Link;
+            }
+        }
+        public void Delete()
+        {
+            Node p = first;
+            Node c = p.Link;
+            if (p != null)
+            {
+                c.Link = null;
+                first = c;
+            }
+        }
+    }
+}

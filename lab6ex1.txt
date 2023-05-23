@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int a, K, L, N;
+            double b, c;
+            Console.Write("Введите кол-во элементов массива: ");
+            N = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите два номера элементов массива (по возрастанию) через пробел: ");
+            string[] s = Console.ReadLine().Split();
+            K = Convert.ToInt32(s[0]);
+            L = Convert.ToInt32(s[1]);
+            Console.WriteLine("\n- Введите элементы массива -");
+            int[] m = new int[N];
+            for (int i = 0; i < N; i++)
+            {
+                Console.Write($"{i} элемент: ");
+                m[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            a = 0;
+            for (int i = 0; i < K; i++)
+            {
+                a += m[i];
+            }
+            c = a;
+            for (int i = L + 1; i > L && i < N; i++)
+            {
+                c += m[i];
+            }
+            b = c / (N - L + K - 1);
+            Console.WriteLine();
+            Console.WriteLine($"Среднее арифметическое - {b}");
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

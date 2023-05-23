@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int N, i, b, c;
+            Console.Write("Введите количество элементов массива: ");
+            N = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("- Далее введите элементы массива -");
+            int[] a = new int[N];
+            for (i = 0; i < N; i++)
+            {
+                Console.Write($"{i} элемент: ");
+                a[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            b = 0;
+            for (i = 0; i < N; i++)
+            {
+                if (a[i] > 0)
+                {
+                    b++;
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("- Получившийся массив -");
+            int[] m = new int[N + b];
+            c = 0;
+            for (i = 0; i < N; i++)
+            {
+                if (a[i] > 0)
+                {
+                    m[c] = 0;
+                    m[c + 1] = a[i];
+                    c += 2;
+                }
+                else
+                {
+                    m[c] = a[i];
+                    c += 1;
+                }
+            }
+            for (i = 0; i < N + b; i++)
+            {
+                Console.WriteLine($"{i} элемент - {m[i]}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}

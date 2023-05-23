@@ -1,0 +1,152 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace _1
+{
+    class Program
+    {
+        struct Hotel
+        {
+            public string lastname;
+            public string firstname;
+            public string middlename;
+            public int roomnum;
+            public string date;
+            public int daynum;
+            public int cost;
+            public void WriteInfo()
+            {
+                Console.WriteLine($"Фамилия: {lastname} Имя: {firstname} Отчество: {middlename}\nНомер комнаты: {roomnum} Дата въезда: {date}\nКоличество дней: {daynum} Суточная стоимость: {cost}");
+            }
+        }
+        static void Main(string[] args)
+        {
+            string filePath = @"C:\App\hotel.txt";
+            int k = 0;
+            while (k != 4)
+            {
+                Console.Clear();
+                Console.WriteLine("Выберите пункт меню:");
+                Console.WriteLine("1 - Ввод данных");
+                Console.WriteLine("2 - Просмотр данных о всех клиентах");
+                Console.WriteLine("3 - Просмотр данных о клиенте из определенной комнаты");
+                Console.WriteLine("4 - Выход");
+                k = Convert.ToInt32(Console.ReadLine());
+                switch (k)
+                {
+                    case 1:
+                        DataEntry(filePath);
+                        break;
+                    case 2:
+                        Costumers(filePath);
+                        break;
+                    case 3:
+                        RoomInfo(filePath);
+                        break;
+                    default:
+                        if (k != 4)
+                        {
+                            Console.WriteLine("Введена неверная команда");
+                        }
+                        k = 4;
+                        break;
+                }
+            }
+        }
+        static void DataEntry(string filePath)
+        {
+            Console.Clear();
+            Console.Write("Введите данные о новом клиенте в данном порядке: ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("Фамилия Имя Отчество ");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write("Номер комнаты ");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write("Дата въезда ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("Количество дней ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Суточная стоимость ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            string info = Console.ReadLine();
+            StreamWriter sw = new StreamWriter(filePath, true, Encoding.UTF8);
+            sw.WriteLine(info);
+            sw.Close();
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter, чтобы продолжить");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        static void Costumers(string filePath)
+        {
+            Console.Clear();
+            int N = File.ReadAllLines(filePath).Length;
+            Hotel[] hotels = new Hotel[N];
+            string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
+            string[] w;
+            for (int i = 0; i < N; i++)
+            {
+                w = lines[i].Split(' ');
+                hotels[i].lastname = w[0];
+                hotels[i].firstname = w[1];
+                hotels[i].middlename = w[2];
+                hotels[i].roomnum = Convert.ToInt32(w[3]);
+                hotels[i].date = w[4];
+                hotels[i].daynum = Convert.ToInt32(w[5]);
+                hotels[i].cost = Convert.ToInt32(w[6]);
+                hotels[i].WriteInfo();
+                Console.WriteLine();
+            }
+            Console.WriteLine("Нажмите Enter, чтобы продолжить");
+            Console.ReadLine();
+            Console.Clear();
+        }
+        static void RoomInfo(string filePath)
+        {
+            Console.Clear();
+            int N = File.ReadAllLines(filePath).Length;
+            Hotel[] hotels = new Hotel[N];
+            string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
+            string[] w;
+            for (int i = 0; i < N; i++)
+            {
+                w = lines[i].Split(' ');
+                hotels[i].lastname = w[0];
+                hotels[i].firstname = w[1];
+                hotels[i].middlename = w[2];
+                hotels[i].roomnum = Convert.ToInt32(w[3]);
+                hotels[i].date = w[4];
+                hotels[i].daynum = Convert.ToInt32(w[5]);
+                hotels[i].cost = Convert.ToInt32(w[6]);
+            }
+            Console.Write("Введите номер комнаты, информацию о клиенте которой вы хотите получить: ");
+            int db = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            int rn = 0; int k = 0;
+            for (int i = 0; i < N; i++)
+            {
+                if (hotels[i].roomnum == db)
+                {
+                    rn = i;
+                    k = 1;
+                }
+            }
+            if (k == 1)
+            {
+                hotels[rn].WriteInfo();
+            }
+            else
+            {
+                Console.WriteLine("Нет информации об этом номере");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter, чтобы продолжить");
+            Console.ReadLine();
+            Console.Clear();
+        }
+    }
+}

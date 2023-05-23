@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double a;
+            double i = 0;
+            while (i < 24)
+            {
+                i += 2;
+                a = i * 2.54;
+                if (i == 2 || i == 4 || i == 22 || i == 24)
+                {
+                    Console.WriteLine($"{i} дюйма = {a} см");
+                }
+                else
+                {
+                    Console.WriteLine($"{i} дюймов = {a} см");
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Нажмите Enter для выхода из программы");
+            Console.ReadLine();
+        }
+    }
+}
